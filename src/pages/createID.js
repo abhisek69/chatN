@@ -21,19 +21,19 @@ const CreateID = () => {
                 <form className="form w-full">
                     <h2 className="text-3xl mb-6 text-center text-purple-800">CreateID</h2>
                     <div className="inputGRP mb-4">
-                        <label className="block text-md font-medium text-gray-700">Name</label>
+                        <label className="block text-md text-sm text-gray-700">Name</label>
                         <input type="text" className="inputBX" />
                     </div>
                     <div className="inputGRP mb-4">
-                        <label className="block text-md font-medium text-gray-700">Email</label>
+                        <label className="block text-md text-sm text-gray-700">Email</label>
                         <input type="text" className="inputBX" />
                     </div>
                     <div className="inputGRP mb-4">
-                        <label className="block text-md font-medium text-gray-700">Number</label>
+                        <label className="block text-md text-sm text-gray-700">Number</label>
                         <input type="number" className="inputBX" />
                     </div>
                     <div className="inputGRP mb-6">
-                        <label className="block text-md font-medium text-gray-700">Password</label>
+                        <label className="block text-md text-sm text-gray-700">Password</label>
                         <div className="relative">
                             <input type={showPassword ? "text" : "password"} className="inputBX" />
                             <button
@@ -55,7 +55,7 @@ const CreateID = () => {
                         </div>
                     </div>
                     <div className="inputGRP mb-6">
-                        <label className="block text-md font-medium text-gray-700">Confirm Password</label>
+                        <label className="block text-md text-sm text-gray-700">Confirm Password</label>
                         <div className="relative">
                             <input type={showConfirmPassword ? "text" : "password"} className="inputBX" />
                             <button

@@ -16,11 +16,11 @@ const Login = () => {
                 <form className="form w-full">
                     <h2 className="text-3xl mb-6 text-center text-purple-800">Login</h2>
                     <div className="inputGRP mb-4">
-                        <label className="block text-md font-medium text-gray-700">Email or mobile No.</label>
+                        <label className="block text-md text-sm text-gray-700">Email or mobile No.</label>
                         <input type="text" className="inputBX" />
                     </div>
                     <div className="inputGRP mb-6">
-                        <label className="block text-md font-medium text-gray-700">Password</label>
+                        <label className="block text-md text-sm text-gray-700">Password</label>
                         <div className="relative">
                             <input type={showPassword ? "text" : "password"} className="inputBX" />
                             <button
@@ -45,7 +45,8 @@ const Login = () => {
                         <p className="text-sm text-gray-600">Don't have an account?</p>
                         <Link to="/CreateID" className="ml-2 text-sm font-medium text-green-600 hover:text-green-700">Create an account</Link>
                     </div>
-                    <button className="w-full bg-purple-500 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-md">Login</button>
+                    <Link to="/Home" className="ml-2"><button className="w-full bg-purple-500 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-md">Login</button></Link>
+                   
                 </form>
             </div>
        

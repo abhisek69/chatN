@@ -1,7 +1,9 @@
 import React from "react";
 
 const ErrorPage = () => {
-    return <h1>error 404 not found</h1>
+    return (<div className="page flex items-center justify-center h-screen">
+        <h1 className="text-5xl text-white">ERROR 404 NOT FOUND OPPPSSS💀</h1>
+    </div>)
 }
 
 export default ErrorPage;
