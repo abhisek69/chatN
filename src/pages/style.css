@@ -44,3 +44,23 @@
     }
 }
 
+.home-container {
+    display: flex;
+    height: 100vh; /* Full height */
+}
+
+.content {
+    flex: 1; /* Take remaining space */
+    padding: 20px;
+}
+
+.slider {
+    width: 20px; /* Width of the slider */
+    background-color: gray;
+    cursor: ew-resize; /* Cursor style */
+}
+
+.home{
+   width: auto;
+   
+}

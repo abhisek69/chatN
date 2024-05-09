@@ -17,3 +17,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.light {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --btn-color:rgb(223, 0, 193);
+}
+
+.dark {
+  --bg-color: #1a1a1a;
+  --text-color: #ffffff;
+  --btn-color:rgb(159, 56, 0);
+}
+
+.home {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+.home .btn{
+  background: var(--btn-color);
+}
+.home .btn:hover{
+  box-shadow: 0 0 10px var(--btn-color);
+  transition: .7s;
+}

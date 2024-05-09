@@ -3,26 +3,75 @@ import { Link } from "react-router-dom";
 import './style.css';
 
 const Login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [emailError, setEmailError] = useState("");
+    const [passwordError, setPasswordError] = useState("");
+    const [emailTouched, setEmailTouched] = useState(false); // Track if email input has been touched
+
+    const validateEmail = () => {
+        const isValid = /\S+@\S+\.\S+/.test(email);
+        if (!isValid && emailTouched) { // Show error only if email is touched and invalid
+            setEmailError("Please enter a valid email address");
+        } else {
+            setEmailError("");
+        }
+    };
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+        validateEmail();
+    };
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+    };
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
 
+    const handleEmailBlur = () => {
+        setEmailTouched(true); // Mark email input as touched when blurred
+        validateEmail();
+    };
+
+    const handleLogin = () => {
+        validateEmail();
+        if (password === "") {
+            setPasswordError("Please enter your password");
+        } else {
+            setPasswordError("");
+            // Add your login logic here
+        }
+    };
+
     return (
         <div className="page flex items-center justify-center h-screen">
-
             <div className="login bg-white shadow-lg rounded-md p-8">
                 <form className="form w-full">
                     <h2 className="text-3xl mb-6 text-center text-purple-800">Login</h2>
-                    <div className="inputGRP mb-4">
-                        <label className="block  text-sm text-gray-700">Email or mobile No.</label>
-                        <input type="text" className="inputBX" />
+                    <div className={`inputGRP mb-4 ${emailError && emailTouched ? "border-red-500" : ""}`}>
+                        <label className="block text-sm text-gray-700">Email or mobile No.</label>
+                        <input
+                            type="text"
+                            className={`inputBX ${emailError && emailTouched ? "border-red-500" : ""}`}
+                            value={email}
+                            onChange={handleEmailChange}
+                            onBlur={handleEmailBlur}
+                        />
+                        {emailError && emailTouched && <p className="text-red-500 text-sm mt-1">{emailError}</p>}
                     </div>
                     <div className="inputGRP mb-6">
-                        <label className="block  text-sm text-gray-700">Password</label>
+                        <label className="block text-sm text-gray-700">Password</label>
                         <div className="relative">
-                            <input type={showPassword ? "text" : "password"} className="inputBX" />
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                className={`inputBX ${passwordError ? "border-red-500" : ""}`}
+                                value={password}
+                                onChange={handlePasswordChange}
+                            />
                             <button
                                 type="button"
                                 className="absolute inset-y-0 right-0 px-3 flex items-center bg-transparent focus:outline-none"
@@ -40,17 +89,16 @@ const Login = () => {
                                 )}
                             </button>
                         </div>
+                        {passwordError && <p className="text-red-500 text-sm mt-1">{passwordError}</p>}
                     </div>
                     <div className="flex justify-between items-center mb-4">
                         <p className="text-sm text-gray-600">Don't have an account?</p>
                         <Link to="/CreateID" className="ml-2 text-sm font-medium text-green-600 hover:text-green-700">Create an account</Link>
                     </div>
-                    <Link to="/Home" className="ml-2"><button className="w-full bg-purple-500 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-md">Login</button></Link>
-                   
+                    <button className="w-full bg-purple-500 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-md" onClick={handleLogin}>Login</button>
                 </form>
             </div>
-       
-     </div>
+        </div>
     );
 }
 
