@@ -1,8 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './style.css';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../components/firebase";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Ensure the CSS for toastify is imported
 
 const Login = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
@@ -37,20 +42,31 @@ const Login = () => {
         validateEmail();
     };
 
-    const handleLogin = () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // Prevent form default submission behavior
         validateEmail();
+
         if (password === "") {
             setPasswordError("Please enter your password");
         } else {
             setPasswordError("");
-            // Add your login logic here
+        }
+
+        if (!emailError && !passwordError) {
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                navigate("/home"); // Redirect to the home page upon successful login
+            } catch (error) {
+                console.error("Error logging in:", error);
+                toast.error("Invalid email or password", { position: "bottom-center" });
+            }
         }
     };
 
     return (
         <div className="page flex items-center justify-center h-screen">
             <div className="login bg-white shadow-lg rounded-md p-8">
-                <form className="form w-full">
+                <form className="form w-full" onSubmit={handleSubmit}>
                     <h2 className="text-3xl mb-6 text-center text-purple-800">Login</h2>
                     <div className={`inputGRP mb-4 ${emailError && emailTouched ? "border-red-500" : ""}`}>
                         <label className="block text-sm text-gray-700">Email or mobile No.</label>
@@ -95,7 +111,9 @@ const Login = () => {
                         <p className="text-sm text-gray-600">Don't have an account?</p>
                         <Link to="/CreateID" className="ml-2 text-sm font-medium text-green-600 hover:text-green-700">Create an account</Link>
                     </div>
-                    <button className="w-full bg-purple-500 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-md" onClick={handleLogin}>Login</button>
+                    <button type="submit" className="w-full bg-purple-500 hover:bg-purple-800 text-white font-semibold py-2 px-4 rounded-md">
+                        Login
+                    </button>
                 </form>
             </div>
         </div>

@@ -1,4 +1,4 @@
-.login{
+.login {
     border: 1px solid white;
     display: flex;
     justify-content: center;
@@ -8,7 +8,7 @@
     /* text-align: center; */
 }
 
-.inputBX{
+.inputBX {
     background: transparent;
     border: 1.9px solid purple;
     border-radius: 4px;
@@ -17,16 +17,16 @@
     margin: 4px;
 }
 
-.inputBX:hover{
+.inputBX:hover {
     box-shadow: 2px 2px 2px purple;
 }
 
 
-.page{
+.page {
     margin: auto;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     overflow: auto;
-    background: linear-gradient(315deg, rgba(54, 220, 87) 3%, rgba(41, 205, 197) 18%,rgba(232, 49, 49) 30%, rgba(182, 24, 210) 68%, rgba(61, 0, 80,1) 98%);
+    background: linear-gradient(315deg, rgba(54, 220, 87) 3%, rgba(41, 205, 197) 18%, rgba(232, 49, 49) 30%, rgba(182, 24, 210) 68%, rgba(61, 0, 80, 1) 98%);
     animation: gradient 25s ease infinite;
     background-size: 400% 400%;
     background-attachment: fixed;
@@ -36,9 +36,11 @@
     0% {
         background-position: 0% 0%;
     }
+
     50% {
         background-position: 100% 100%;
     }
+
     100% {
         background-position: 0% 0%;
     }
@@ -46,21 +48,25 @@
 
 .home-container {
     display: flex;
-    height: 100vh; /* Full height */
+    height: 100vh;
+    /* Full height */
 }
 
 .content {
-    flex: 1; /* Take remaining space */
+    flex: 1;
+    /* Take remaining space */
     padding: 20px;
 }
 
 .slider {
-    width: 20px; /* Width of the slider */
+    width: 20px;
+    /* Width of the slider */
     background-color: gray;
-    cursor: ew-resize; /* Cursor style */
+    cursor: ew-resize;
+    /* Cursor style */
 }
 
-.home{
-   width: auto;
-   
+.home {
+    width: auto;
+
 }
