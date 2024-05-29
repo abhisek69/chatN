@@ -70,3 +70,42 @@
     width: auto;
 
 }
+
+.border-container {
+    position: relative;
+}
+
+.border-container::before,
+.border-container::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    height: 2px;
+    background: white;
+}
+
+.border-container::before {
+    top: 0;
+}
+
+.border-container::after {
+    bottom: 0;
+}
+
+.border-container::before {
+    width: 95%;
+}
+
+.border-container::before {
+    width: 100%;
+    top: 4px; /* Adjust the top position to prevent overlap */
+}
+
+.border-container::after {
+    width: 95%;
+}
+
+.border-container::after {
+    width: 100%;
+    bottom: 4px; /* Adjust the bottom position to prevent overlap */
+}

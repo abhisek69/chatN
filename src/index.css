@@ -20,15 +20,18 @@ code {
 .light {
   --bg-color: #ffffff;
   --text-color: #000000;
-  --btn-color:rgb(223, 0, 193);
+  --btn-color:rgba(198, 0, 171, 0.796);
+  --menubar:rgb(65, 0, 57);
+  --tbmenu:rgba(96, 0, 82, 0.5);
 }
 
 .dark {
   --bg-color: #1a1a1a;
   --text-color: #ffffff;
-  --btn-color:rgb(159, 56, 0);
+  --btn-color:rgb(25, 166, 0);
+  --menubar:rgb(8, 53, 0);
+  --tbmenu:rgba(10, 68, 0, 0.500);
 }
-
 .home {
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -39,4 +42,46 @@ code {
 .home .btn:hover{
   box-shadow: 0 0 10px var(--btn-color);
   transition: .7s;
+}
+
+.home{
+  display: flex;
+}
+.chat:hover{
+  background: var(--btn-color);
+  transition: .6s;
+}
+.uppermenu{
+  background: var(--tbmenu);
+  transition: .7s;
+}
+.menu{
+  background: var(--menubar);
+  transition: .7s;
+  
+}
+
+
+
+
+
+
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #363636; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ffffff; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #85ad82; 
 }
