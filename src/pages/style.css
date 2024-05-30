@@ -31,7 +31,9 @@
     background-size: 400% 400%;
     background-attachment: fixed;
 }
-
+.Search{
+    background: transparent;
+}
 @keyframes gradient {
     0% {
         background-position: 0% 0%;

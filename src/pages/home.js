@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 import mypic  from "./mypic.jpg";
 import Chats from "./chats";
+import Search from "./components/searchbar";
+import ChatBox from "./components/chatBox";
 const Home = () => {
     const navigate = useNavigate();
     const { logout } = useAuth(null);
@@ -55,7 +57,7 @@ const Home = () => {
     return (
         <div className={`home h-screen ${toggletheme ? 'dark' : 'light'}`}>
             
-            <div className="menu w-auto h-full flex flex-col">
+            <div className="menu w-auto h-full flex flex-col  ">
                 <div className="flex justify-center">
                     {User ? (<div className=" flex justify-center items-center p-4  text-white group w-full uppermenu"  style={{ height: 'fit-content' }}>
                     <div className="" >
@@ -84,6 +86,15 @@ const Home = () => {
                         logout
                     </button>
                 </div>
+            </div>
+            <div className="flex w-full flex items-center flex-col">
+            <div className="flex w-full flex justify-center">
+            <Search />
+            </div>
+            <div className=" chatBox w-[90%] h-[80%] rounded-lg p-3 mt-5">
+            <ChatBox />
+            
+            </div>
             </div>
         </div>
     );
