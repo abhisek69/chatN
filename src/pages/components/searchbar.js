@@ -3,7 +3,7 @@ import React from "react";
 const Search =()=>{
 return (<>
 <div className=" mt-4 ">
- <input className="Search text-center" type="text" placeholder="Search Chats" />
+ <input className="Search pl-4 focus:outline-none" type="text" placeholder="Search Chats" />
 </div>
 </>)
 }

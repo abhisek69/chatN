@@ -25,12 +25,13 @@ code {
   --tbmenu:rgba(96, 0, 82, 0.5);
   --border:rgba(198, 0, 171, 0.796);
   --darkShadow:#000000;
+  --chatbgWhite:#9d9d9d;
 }
 
 .dark {
   --bg-color: #1a1a1a;
   --text-color: #ffffff;
-  --btn-color:rgb(25, 166, 0);
+  --btn-color:rgb(25, 166, 0.796);
   --menubar:rgb(8, 53, 0);
   --tbmenu:rgba(10, 68, 0, 0.500);
     --border: rgb(25, 166, 0);
@@ -39,13 +40,14 @@ code {
 .home {
   background-color: var(--bg-color);
   color: var(--text-color);
+  transition: .7s;
 }
 .home .btn{
   background: var(--btn-color);
 }
 .home .btn:hover{
   box-shadow: 0 0 10px var(--btn-color);
-  transition: .7s;
+  transition: .3s;
 }
 
 .home{
@@ -62,26 +64,69 @@ code {
 .menu{
   background: var(--menubar);
   transition: .7s;
-  
+
+}
+.sendForm{
+  position: relative;
+  top: 93%;
+
+}
+.sendInput{
+  min-width: auto;
+  width: 80%;
+  padding-left: 20px;
+  border-radius: 20px 0 0 20px;
+  border: 2px solid var(--border);
+  transition: .7s;
+  background: var(--menubar);
+  color: white;
+}
+.Sendbtn{
+  width: 20%;
+  border-radius: 0 20px 20px 0;
+  border: 2px solid var(--border);
+  transition: .7s;
+  background: var(--btn-color);
+  color: white;
 }
 .Search{
-  background: transparent;
+  /* background: transparent; */
   border: 3px solid var(--border);
   border-radius: 20px;
   width: 500px;
   height: 40px;
   box-shadow: 0px 0 6px var(--darkShadow);
   transition: .7s;
+  background: var(--chatbgWhite);
 }
 .chatBox{
+  
   border: 3px solid var(--border);
   transition: .7s;
 }
 
 
 
+.nameHover{
+  background: var(--btn-color);
+}
 
-
+@media only screen and (max-width: 700px) {
+  .login{
+    height: 100%;
+    width: 100%;
+  }
+  .Search{
+    width: auto;
+  }
+  .menu{
+    display: none;
+  }
+  .chatBox{
+    height: 100%;
+    width: 100%;
+  }
+}
 
 ::-webkit-scrollbar {
   width: 10px;

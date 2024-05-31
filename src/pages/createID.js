@@ -189,6 +189,9 @@ const CreateID = () => {
                 <div className="flex justify-center mt-6">
                     <Link to="/" className="text-purple-800">Back to Login</Link>
                 </div>
+                <div>
+                    <img src="" alt="" />
+                </div>
             </div>
         </div>
     );
