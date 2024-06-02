@@ -10,6 +10,7 @@ import mypic from "./mypic.jpg";
 import Chats from "./chats";
 import Search from "./components/searchbar";
 import ChatBox from "./components/chatBox";
+import ChatModal from "./components/chatModal"
 const Home = () => {
     const navigate = useNavigate();
     const { logout } = useAuth(null);
@@ -72,9 +73,7 @@ const Home = () => {
                     </div>) : (<div></div>)}
 
                 </div>
-                <div className="btn h-10 flex items-center justify-center flex-col">
-                    <button className="text-xl text-white rounded-full menu-text">new chat</button>
-                </div>
+                <ChatModal />
                 <Chats />
                 
                 <div className="flex-grow"></div>

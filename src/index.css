@@ -105,8 +105,19 @@ code {
   transition: .7s;
 }
 
-
-
+.addUserModal{
+  background: var(--menubar);
+  color: white;
+  transition: .7s;
+}
+.inpt{
+  background: transparent;
+  border: 2px solid var(--border);
+  border-radius: 20px;
+}
+.select{
+  background: var(--menubar);
+}
 .nameHover{
   background: var(--btn-color);
 }
