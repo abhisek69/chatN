@@ -11,11 +11,14 @@ import Chats from "./chats";
 import Search from "./components/searchbar";
 import ChatBox from "./components/chatBox";
 import ChatModal from "./components/chatModal"
+import HamburgerButton from './components/hamburger';
+import Menu from './components/menu';
 const Home = () => {
     const navigate = useNavigate();
     const { logout } = useAuth(null);
     const [toggletheme, settoggletheme] = useState(false);
     const [User, SetUser] = useState()
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const ToggleDark = () => {
         settoggletheme(!toggletheme);
         localStorage.setItem('theme', JSON.stringify(toggletheme ? 'light' : 'dark'));
@@ -38,6 +41,10 @@ const Home = () => {
     };
 
 
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
     const handleLogout = async () => {
         try {
             await logout(User.userName);
@@ -56,55 +63,50 @@ const Home = () => {
     }, []);
 
     return (
+
         <div className={`home h-screen ${toggletheme ? 'dark' : 'light'}`}>
 
-            <div className="menu w-auto h-full flex flex-col  ">
-                <div className="flex justify-center">
-                    {User ? (<div className=" flex justify-center items-center p-4  text-white group w-full uppermenu" style={{ height: 'fit-content' }}>
-                        <div className="" >
-                            <img className="mr-4 border rounded-full" style={{ height: 38, width: 38 }} src={mypic} alt="" />
-                        </div>
-                        <h3 className="text-xl menu-text">{User.userName}</h3>
-
-                        {/* <div className="nameHover absolute top-20 p-4 rounded-lg shadow-lg hidden group-hover:block">
-                            <p className="text-sm text-gray-300">{User.email}</p>
-                            <p className="text-sm text-gray-300">{User.number}</p>
-                        </div> */}
-                    </div>) : (<div></div>)}
-
-                </div>
-                <ChatModal />
-                <Chats />
-                
-                <div className="flex-grow"></div>
-                
-                <div className="flex items-center justify-center p-4 uppermenu">
-                <div>
-                <button className="btn p-2 mr-4  rounded-full" onClick={ToggleDark}>
-                        {toggletheme ? (
-                            <LightIcon style={{ height: 20, width: 20 }} />
+            <div className="m-4 absolute">
+                <HamburgerButton isActive={isMenuOpen} toggleButton={toggleMenu} />
+                <Menu isOpen={isMenuOpen}>
+                    <div className="flex justify-center">
+                        {User ? (
+                            <div className="flex justify-center items-center p-4 text-white group w-full" style={{ height: 'fit-content' }}>
+                                <div>
+                                    <img className="mr-4 border rounded-full" style={{ height: 38, width: 38 }} src={mypic} alt="" />
+                                </div>
+                                <h3 className="text-xl">{User.userName}</h3>
+                            </div>
                         ) : (
-                            <DarkIcon style={{ height: 20, width: 20 }} />
+                            <div></div>
                         )}
-                    </button>
-                </div>
-                    
-                    <button onClick={handleLogout} className="btn p-2 rounded-2xl " style={{ width: "100px" }}>
-                        logout
-                    </button>
-                    
-                </div>
+                    </div>
+                    <ChatModal />
+                    <Chats />
+                    <div className="flex-grow"></div>
+                    <div className="flex items-center justify-center p-4">
+                        <div>
+                            <button className="btn p-2 mr-4 rounded-full" onClick={ToggleDark}>
+                                {toggletheme ? (
+                                    <LightIcon className="h-5 w-5" />
+                                ) : (
+                                    <DarkIcon className="h-5 w-5" />
+                                )}
+                            </button>
+                        </div>
+                        <button onClick={handleLogout} className="btn p-2 rounded-2xl w-24">
+                            Logout
+                        </button>
+                    </div>
+                </Menu>
             </div>
             <div className="flex w-full items-center flex-col">
                 <div className="flex w-full  justify-center">
                     <Search />
                 </div>
-
                 <ChatBox />
-
             </div>
         </div>
-
     );
 }
 

@@ -5,7 +5,7 @@ import { db } from '../../components/firebase'; // Ensure the path is correct
 const ChatModal = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [searchValue, setSearchValue] = useState('');
-    const [searchField, setSearchField] = useState('username');
+    const [searchField, setSearchField] = useState('userName');
     const [users, setUsers] = useState([]);
     const [error, setError] = useState(null);
 
@@ -50,7 +50,7 @@ const ChatModal = () => {
     };
 
     return (
-        <div className="w-full">
+       <div className={`w-full ${isOpen ? 'blur-background' : ''}`}>
             <div className="btn w-full h-8 flex items-center justify-center">
                 <button
                     className="text-3xl text-white rounded-full relative bottom-1"

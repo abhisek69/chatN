@@ -61,10 +61,13 @@ code {
   background: var(--tbmenu);
   transition: .7s;
 }
-.menu{
+.menu123{
   background: var(--menubar);
-  transition: .7s;
+  transition: .3s;
 
+}
+.humberger{
+  background: var(--border);
 }
 .sendForm{
   position: relative;
