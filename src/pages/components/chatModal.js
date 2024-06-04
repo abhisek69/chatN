@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { collection, query, where, getDocs, updateDoc, doc } from "firebase/firestore";
-import { db } from '../../components/firebase'; // Ensure the path is correct
-
+import { collection, query, where, getDocs, updateDoc, getDoc } from "firebase/firestore";
+import { db, auth } from '../../components/firebase'; // Ensure the path is correct
+import { setDoc, doc, addDoc } from "firebase/firestore";
+import { toast } from 'react-toastify';
 const ChatModal = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [searchValue, setSearchValue] = useState('');
@@ -45,12 +46,63 @@ const ChatModal = () => {
         }
     };
 
-    const handleAddFriend = async (userId) => {
-        alert("Friend added successfully");
-    };
+    const handleAddFriend = async (userName, email, number) => {
+        const user = auth.currentUser;
+       console.log(userName.email , number)
+        try {
+          if (user) {
+            // Validate input parameters
+            if (!userName || !email || !number) {
+              throw new Error("Invalid input: userName, email, and number are required.");
+            }
+      
+            const docDetails = doc(db, "Users", user.uid);
+            const userDetailsSnapshot = await getDoc(docDetails);
+      
+            if (userDetailsSnapshot.exists()) {
+              const theUserSendingReq = userDetailsSnapshot.data();
+      
+              // Validate user data from Firestore
+              if (!theUserSendingReq.userName || !theUserSendingReq.email || !theUserSendingReq.number) {
+                throw new Error("Invalid user data: userName, email, and number are required.");
+              }
+      
+              // Ensure the user is not sending a request to themselves
+              if (userName === theUserSendingReq.userName || email === theUserSendingReq.email) {
+                alert("You cannot send a friend request to yourself.");
+                return;
+              }
+      
+              // Add friend request document
+              const docRef = await addDoc(collection(db, "reqFriends"), {
+                from: {
+                  userName: theUserSendingReq.userName,
+                  email: theUserSendingReq.email,
+                  number: theUserSendingReq.number,
+                },
+                to: {
+                  userName: userName,
+                  email: email,
+                  number: number,
+                },
+                status:'pending',
+                accept:false
+              });
+              toast.success(`friend request sent to ${userName}`,{position:"bottom-center"})
+              alert(`friend request sent to ${userName}`)
+            } else {
+              console.log("User data not found");
+            }
+          } else {
+            console.log("No authenticated user");
+          }
+        } catch (e) {
+          console.error("Error adding document: ", e);
+        }
+      };
 
     return (
-       <div className={`w-full ${isOpen ? 'blur-background' : ''}`}>
+        <div className={`w-full  ${isOpen ? 'blur-background' : ''}`}>
             <div className="btn w-full h-8 flex items-center justify-center">
                 <button
                     className="text-3xl text-white rounded-full relative bottom-1"
@@ -60,7 +112,7 @@ const ChatModal = () => {
                 </button>
             </div>
             {isOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center">
+                <div className="fixed chatModal inset-0 z-50 flex items-center justify-center">
                     <div className="fixed inset-0 bg-black opacity-50" onClick={closeModal}></div>
                     <div className="addUserModal flex justify-center items-center flex-col bg-white p-8 rounded-lg shadow-lg z-10">
                         <button className="absolute top-2 right-2 m-4 text-xl" onClick={closeModal}>x</button>
@@ -94,9 +146,9 @@ const ChatModal = () => {
                                             <li key={user.id} className="mb-2 flex items-center justify-between">
                                                 <p>{user.userName}</p>
                                                 <p className="ml-4">{user.email}</p>
-                                                <button 
+                                                <button
                                                     className="btn p-2 ml-2 rounded-md"
-                                                    onClick={() => handleAddFriend(user.id)}
+                                                    onClick={() => handleAddFriend(user.userName , user.email ,user.number)}
                                                 >
                                                     Add Friend
                                                 </button>

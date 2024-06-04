@@ -74,6 +74,9 @@ code {
   top: 93%;
 
 }
+.chatModal{
+  transition: .4s;
+}
 .sendInput{
   min-width: auto;
   width: 80%;

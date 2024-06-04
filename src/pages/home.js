@@ -66,7 +66,7 @@ const Home = () => {
 
         <div className={`home h-screen ${toggletheme ? 'dark' : 'light'}`}>
 
-            <div className="m-4 absolute">
+            <div className="m-4 absolute ">
                 <HamburgerButton isActive={isMenuOpen} toggleButton={toggleMenu} />
                 <Menu isOpen={isMenuOpen}>
                     <div className="flex justify-center">
